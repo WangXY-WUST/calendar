@@ -1,0 +1,13 @@
+.content {
+  padding: 80rpx;
+}
+input {
+  height: 60rpx;
+  margin-top: 20rpx;
+  text-align: center;
+  border: 1rpx solid #999;
+}
+
+radio-group {
+  margin-top: 20rpx;
+}

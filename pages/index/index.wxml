@@ -1,0 +1,11 @@
+<navigation-bar title="Weixin" back="{{false}}" color="black" background="#FFF"></navigation-bar>
+<view class="content">
+  <input disabled="true" value="{{range}}" type="text" placeholder="点击选择日期" style="font-weight: 400;font-size: 28rpx;color: #BABABA;" bind:tap="show"/>
+  <radio-group bindchange="changeRadio">
+    单选
+    <radio value="single"/>
+    多选
+    <radio value="range" checked></radio>
+  </radio-group>
+  <custom-calendar type="{{type}}"  visible="{{visible}}" bind:getRange="getRange" bind:close="close"></custom-calendar>
+</view>

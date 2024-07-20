@@ -1,0 +1,31 @@
+<view class="slide-up-dialog {{visible ? 'active' : ''}}">
+  <view class="slide-up-back {{visible ? 'active' : ''}}" bind:tap="close"></view>
+  <view class="slide-up-container {{visible ? 'active' : ''}} {{isTabbar ? 'change' : ''}}" style="background: {{bgColor}}">
+    <view class="close" bind:tap="close"></view>
+    <view class="calendar-title">{{title}}</view>
+    <view class="calendar custom-class">
+      <view class="month-mask">{{showMonth}}</view>
+      <view class="month">
+        <text class="title">{{showYear}}年 {{showMonth}}月</text>
+        <view class="icon_arrows disflex">
+          <image src="/assets/svgs/arrow.svg" bind:tap="getLastMonth" class="icon_arrows_left icon_arrows_tip" />
+          <image src="/assets/svgs/arrow.svg" bind:tap="getNextMonth" class="icon_arrows_right icon_arrows_tip" />
+        </view>
+      </view>
+      <view class="mt-32 week_list">
+        <text wx:for="{{['日', '一', '二', '三', '四', '五', '六']}}" wx:key="index" class="c-9f9f9f">{{item}}</text>
+      </view>
+      <view class="day_list">
+        <text wx:for="{{dateList}}" wx:key="index" class="date_item {{(item.timestamp === endTimestamp || item.timestamp === startTimestamp)?'selectDate_item':''}} {{(item.timestamp <= endTimestamp && item.timestamp >= startTimestamp) ? 'selectDateBg' : ''}} {{item.timestamp === endTimestamp?'end-radio':''}} {{item.timestamp === startTimestamp?'start-radio':''}} c-6b6b6b" bind:tap="selectDate" data-date="{{item.label}}" data-tamp="{{item.timestamp}}">
+          <text class="selectDate" wx:if="{{item.timestamp === endTimestamp || item.timestamp === startTimestamp}}"></text>{{item.label}}
+          <text class="circular {{item.status === '0' ? 'circular_normal':''}}" wx:if="{{item.status}}"></text>
+        </text>
+      </view>
+    </view>
+    <!-- 按钮就根据主题色自定义 -->
+    <view class="foot-btns">
+      <button bind:tap="handleClean" type="warn">清除</button>
+      <button bind:tap="handleConfirm" type="default">确定</button>
+    </view>
+  </view>
+</view>
